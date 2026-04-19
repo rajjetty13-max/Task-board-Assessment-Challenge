@@ -1,16 +1,60 @@
-# React + Vite
+# Flowboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Kanban-style task management board built with React and Supabase.
+Live demo: https://task-board-assessment-challenge-opal.vercel.app/
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Drag and drop tasks between columns
+- Guest accounts — no sign up required
+- Real-time updates across browser tabs
+- Create tasks with title, description, priority and due date
+- Delete tasks
+- Data persists in Supabase with Row Level Security
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React — frontend UI
+- Vite — local development and build tool
+- Supabase — database, authentication, and real-time subscriptions
+- Vercel — deployment
 
-## Expanding the ESLint configuration
+## Database Schema
+```sql
+create table public.tasks (
+  id          uuid primary key default gen_random_uuid(),
+  title       text not null,
+  description text,
+  status      text not null default 'todo',
+  priority    text not null default 'normal',
+  due_date    date,
+  assignee_id uuid,
+  user_id     uuid not null references auth.users(id) on delete cascade,
+  created_at  timestamptz not null default now()
+);
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Running Locally
+
+1. Clone the repo
+   git clone https://github.com/YOUR_USERNAME/Task-board-Assessment-Challenge.git
+
+2. Install dependencies
+   npm install
+
+3. Create a .env file in the root with your Supabase credentials
+   VITE_SUPABASE_API_URL=your_supabase_url
+   VITE_SUPABASE_API_KEY=your_supabase_anon_key
+
+4. Start the dev server
+   npm run dev
+
+5. Open http://localhost:5173
+
+## How It Works
+
+- On first load the app signs in the user anonymously via Supabase Auth
+- Every task is tied to that guest user via user_id
+- Row Level Security ensures users can only see and edit their own tasks
+- Real-time subscriptions keep the board in sync across browser tabs
+- Drag and drop uses the HTML5 drag API — no extra libraries needed
