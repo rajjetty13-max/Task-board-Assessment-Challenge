@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0f0f13;
+  color: #e8e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: #17171d;
+  border-bottom: 1px solid #2e2e3e;
+}
+
+.logo {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.board-wrap {
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.board {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.column {
+  width: 280px;
+  background: #17171d;
+  border: 1px solid #2e2e3e;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.column-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.column-count {
+  background: #252530;
+  color: #9090a8;
+  border-radius: 20px;
+  padding: 1px 7px;
+  font-size: 11px;
+}
+
+.column-body {
+  padding: 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card {
+  background: #1e1e26;
+  border: 1px solid #2e2e3e;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: grab;
+}
+
+.card:hover {
+  border-color: #3a3a4e;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 12px;
+  color: #9090a8;
+  line-height: 1.5;
+}
+
+.card-meta {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-low    { background: #1a2e1a; color: #4ade80; }
+.badge-normal { background: #1a1a2e; color: #818cf8; }
+.badge-high   { background: #2e1a1a; color: #f87171; }
+.badge-urgent { background: #2e1a0a; color: #fb923c; }
+
+.add-card-btn {
+  margin: 0 10px 10px;
+  background: transparent;
+  border: 1px dashed #2e2e3e;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  color: #5a5a72;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.add-card-btn:hover {
+  border-color: #3a3a4e;
+  color: #9090a8;
+}
